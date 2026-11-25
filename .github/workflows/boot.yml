@@ -39,6 +39,8 @@ jobs:
         run: mkdocs build --strict
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - name: Publish source files to main
         run: |
           cp -a source/site "$RUNNER_TEMP/site"
