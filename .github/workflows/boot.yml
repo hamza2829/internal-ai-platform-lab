@@ -19,7 +19,6 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-          cache: pip
       - name: Extract project source bundle
         run: unzip -q project-bundle.zip -d source
       - name: Install test and documentation dependencies
@@ -43,7 +42,6 @@ jobs:
       - name: Publish source files to main
         run: |
           cp -a source/site "$RUNNER_TEMP/site"
-          rm -rf .github/workflows/bootstrap.yml
           rm -rf .github/workflows/bootstrap.yml
           cp -a source/. .
           rm -rf source project-bundle.zip
