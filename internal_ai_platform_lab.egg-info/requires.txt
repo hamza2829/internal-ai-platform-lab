@@ -1,0 +1,16 @@
+fastapi<1,>=0.115
+uvicorn[standard]<1,>=0.32
+pydantic<3,>=2.9
+
+[docs]
+mkdocs<2,>=1.6
+mkdocs-material<10,>=9.5
+
+[model]
+transformers<5,>=4.46
+torch<3,>=2.5
+
+[test]
+pytest<9,>=8.3
+pytest-cov<7,>=6
+httpx<1,>=0.27

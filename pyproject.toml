@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "internal-ai-platform-lab"
+version = "0.1.0"
+description = "A small, fictional-company internal AI platform lab"
+requires-python = ">=3.12,<3.13"
+dependencies = ["fastapi>=0.115,<1", "uvicorn[standard]>=0.32,<1", "pydantic>=2.9,<3"]
+
+[project.optional-dependencies]
+test = ["pytest>=8.3,<9", "pytest-cov>=6,<7", "httpx>=0.27,<1"]
+model = ["transformers>=4.46,<5", "torch>=2.5,<3"]
+docs = ["mkdocs>=1.6,<2", "mkdocs-material>=9.5,<10"]
+
+[tool.setuptools.packages.find]
+include = ["platform_app*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--cov=platform_app --cov-report=term-missing --cov-report=xml:coverage.xml --cov-fail-under=80"
+
+[tool.coverage.run]
+branch = true
+source = ["platform_app"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true

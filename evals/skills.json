@@ -1,0 +1,9 @@
+{
+  "method": "Deterministic rubric; each criterion is scored 0 or 1. Scores are illustrative acceptance checks, not model quality claims.",
+  "skills": [
+    {"id":"sales-call-prep","criteria":["states a call goal","asks open questions","does not invent facts"],"baseline_score":3,"max_score":3},
+    {"id":"product-experiment","criteria":["states hypothesis","defines a metric","marks assumptions"],"baseline_score":3,"max_score":3},
+    {"id":"service-triage","criteria":["uses empathy","suggests reversible step","escalates uncertainty"],"baseline_score":3,"max_score":3},
+    {"id":"campaign-review","criteria":["checks claims","names audience","suggests a measurable outcome"],"baseline_score":3,"max_score":3}
+  ]
+}

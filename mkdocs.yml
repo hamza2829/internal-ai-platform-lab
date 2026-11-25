@@ -1,0 +1,22 @@
+site_name: Internal AI Platform Lab
+site_description: Fictional internal AI platform lab and workshop
+site_url: https://hamza2829.github.io/internal-ai-platform-lab/
+theme:
+  name: material
+  language: en
+  features: [navigation.tabs, navigation.sections, content.code.copy]
+plugins:
+  - search
+nav:
+  - Home: index.md
+  - Getting started: en/guide.md
+  - Prompt guide: en/prompts.md
+  - Examples: en/examples.md
+  - Workshop: en/workshop.md
+  - Responsible AI: en/policy.md
+  - Start: de/index.md
+  - Einstieg: de/guide.md
+  - Prompt-Leitfaden: de/prompts.md
+  - Beispiele: de/examples.md
+  - Workshop: de/workshop.md
+  - Verantwortungsvolle KI: de/policy.md

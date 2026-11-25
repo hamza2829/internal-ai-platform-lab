@@ -1,0 +1,20 @@
+Metadata-Version: 2.4
+Name: internal-ai-platform-lab
+Version: 0.1.0
+Summary: A small, fictional-company internal AI platform lab
+Requires-Python: <3.13,>=3.12
+License-File: LICENSE
+Requires-Dist: fastapi<1,>=0.115
+Requires-Dist: uvicorn[standard]<1,>=0.32
+Requires-Dist: pydantic<3,>=2.9
+Provides-Extra: test
+Requires-Dist: pytest<9,>=8.3; extra == "test"
+Requires-Dist: pytest-cov<7,>=6; extra == "test"
+Requires-Dist: httpx<1,>=0.27; extra == "test"
+Provides-Extra: model
+Requires-Dist: transformers<5,>=4.46; extra == "model"
+Requires-Dist: torch<3,>=2.5; extra == "model"
+Provides-Extra: docs
+Requires-Dist: mkdocs<2,>=1.6; extra == "docs"
+Requires-Dist: mkdocs-material<10,>=9.5; extra == "docs"
+Dynamic: license-file
