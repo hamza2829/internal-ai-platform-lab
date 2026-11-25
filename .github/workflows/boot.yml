@@ -1,0 +1,59 @@
+name: Bootstrap and publish platform
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  build-test-publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Extract project source bundle
+        run: unzip -q project-bundle.zip -d source
+      - name: Install test and documentation dependencies
+        working-directory: source
+        run: python -m pip install -e '.[test,docs]'
+      - name: Run tests and coverage
+        working-directory: source
+        run: pytest
+      - name: Try the small open model; adapter falls back to the deterministic mock
+        working-directory: source
+        env:
+          AI_ADAPTER: model
+        run: |
+          python -m pip install -e '.[model]' || true
+          python -c "from platform_app.adapters import create_adapter; a=create_adapter(); print(a.name); print(a.generate('Say hello','Fictional demo'))"
+      - name: Build bilingual training site
+        working-directory: source
+        run: mkdocs build --strict
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Publish source files to main
+        run: |
+          cp -a source/site "$RUNNER_TEMP/site"
+          rm -rf .github/workflows/bootstrap.yml
+          rm -rf .github/workflows/bootstrap.yml
+          cp -a source/. .
+          rm -rf source project-bundle.zip
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Publish internal AI platform lab" || true
+          git push origin HEAD:main
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ runner.temp }}/site
+      - id: deployment
+        uses: actions/deploy-pages@v4
